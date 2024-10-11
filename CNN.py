@@ -44,6 +44,7 @@ class ConvNet(nn.Module):
     
     def forward(self,x):
         x = F.relu(self.conv1(x))
+        x = self.pool(x)
         x = F.relu(self.conv2(x))
         x = self.pool(x)
         x = x.view(-1,16*5*5)
