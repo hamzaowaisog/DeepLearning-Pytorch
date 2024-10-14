@@ -24,9 +24,12 @@ num_epochs = 2
 batch_size = 100
 learning_rate = 0.001
 
+transform = transforms.Compose([transforms.ToTensor(),
+                                transforms.Normalize((0.1307,),(0.3081))])
+
 # MNIST
-train_dataset = torchvision.datasets.MNIST(root='./data', train=True, transform=transforms.ToTensor(), download=True)
-test_dataset = torchvision.datasets.MNIST(root = './data', train=False, transform=transforms.ToTensor())
+train_dataset = torchvision.datasets.MNIST(root='./data', train=True, transform=transform, download=True)
+test_dataset = torchvision.datasets.MNIST(root = './data', train=False, transform=transform)
 
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset , batch_size=batch_size , shuffle=True)
 test_loader = torch.utils.data.DataLoader(dataset=test_dataset , batch_size=batch_size , shuffle=False)
@@ -101,3 +104,4 @@ with torch.no_grad():
     acc = 100.0 * n_correct / n_samples
     print(f'accuracy = {acc}')
 
+torch.save(model.state_dict(), "mnist_ffn.pth") 
