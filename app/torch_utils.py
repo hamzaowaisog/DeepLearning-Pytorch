@@ -45,7 +45,6 @@ def transform_image(image_bytes):
 
 def get_prediction(image_tensor):
     images = image_tensor.reshape(-1, 28*28).to(device)
-    labels = labels.to(device)
     outputs = model(images)
     
     _, predicted = torch.max(outputs.data , 1)

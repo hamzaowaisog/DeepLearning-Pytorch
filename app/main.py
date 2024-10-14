@@ -1,6 +1,7 @@
 from flask import Flask,request,jsonify
 from torch_utils import transform_image, get_prediction
 app = Flask(__name__)
+# app.debug = True
 
 ALLOWED_EXTENSIONS = {'png', 'jpg' , 'jpeg'}
 
@@ -33,5 +34,5 @@ def predict():
     # 3 prediction
     # 4 return json
     
-    return jsonify({'result':1})
+    # return jsonify({'result':1})
 
